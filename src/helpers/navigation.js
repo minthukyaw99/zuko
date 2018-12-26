@@ -1,7 +1,6 @@
 import React from 'react';
 import {Navigation} from 'react-native-navigation';
 import { COLOR } from 'react-native-material-ui';
-import Icon from 'react-native-vector-icons/AntDesign';
 
 export const goToAuth = () => Navigation.setRoot({
     root: {
