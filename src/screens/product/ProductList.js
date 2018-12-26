@@ -2,9 +2,9 @@ import React  from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, SearchBar, Card } from "react-native-elements";
 
-import Base from './Base';
+import Base from '../Base';
 
-class Home extends Base {
+class ProductList extends Base {
     constructor(props) {
         super(props);
 
@@ -128,4 +128,4 @@ class Home extends Base {
     }
 }
 
-export default Home;
+export default ProductList;

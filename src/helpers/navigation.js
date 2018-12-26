@@ -50,16 +50,23 @@ export const goHome = () => Navigation.setRoot({
                     children: [
                         {
                             stack: {
-                                id: 'tab1Stack',
+                                id: 'product',
                                 children: [
                                     {
                                         component: {
-                                            name: 'screens.home',
+                                            id: 'productDetail',
+                                            name: 'screens.product.productDetail',
                                             passProps: {
                                                 text: 'text is passed',
-                                                bottomIcon: 'barcode'
                                             },
-                                        }
+                                        },
+                                        component: {
+                                            id: 'productList',
+                                            name: 'screens.product.productList',
+                                            passProps: {
+                                                text: 'text is passed',
+                                            },
+                                        },
                                     }
                                 ],
                                 options: {
@@ -74,12 +81,20 @@ export const goHome = () => Navigation.setRoot({
                         },
                         {
                             stack: {
-                                id: 'tab2Stack',
+                                id: 'card',
                                 children: [
                                     {
                                         component: {
-                                            id: "registerCard",
-                                            name: 'screens.bottomTabs.scanQrCode',
+                                            id: 'cardDetail',
+                                            name: 'screens.card.cardDetail',
+                                            passProps: {
+                                                text: 'text is passed',
+                                                bottomIcon: 'barcode'
+                                            },
+                                        },
+                                        component: {
+                                            id: 'cardList',
+                                            name: 'screens.card.cardList',
                                             passProps: {
                                                 text: 'text is passed',
                                                 bottomIcon: 'barcode'
@@ -91,7 +106,7 @@ export const goHome = () => Navigation.setRoot({
                                     bottomTab: {
                                         iconColor: COLOR.grey400,
                                         selectedIconColor: COLOR.pink500,
-                                        icon: require('../assets/images/qrCode.png'),
+                                        icon: require('../assets/images/cardIcon.png'),
                                     },
                                 }
                             },
@@ -102,7 +117,7 @@ export const goHome = () => Navigation.setRoot({
                                 children: [
                                     {
                                         component: {
-                                            name: 'screens.bottomTabs.scanQrCode',
+                                            name: 'screens.card.cardList',
                                             passProps: {
                                                 text: 'text is passed',
                                                 bottomIcon: 'barcode'
@@ -114,7 +129,7 @@ export const goHome = () => Navigation.setRoot({
                                     bottomTab: {
                                         iconColor: COLOR.grey500,
                                         selectedIconColor: COLOR.pink400,
-                                        icon: require('../assets/images/cardIcon.png'),
+                                        icon: require('../assets/images/qrCode.png'),
                                     }
                                 }
                             },

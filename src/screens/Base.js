@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Navigation} from "react-native-navigation/lib/dist/index";
 import Icon from 'react-native-vector-icons/EvilIcons';
 
+import topBarRightIconConfig from '../config/topBarRightIconConfig';
 
 class Base extends Component {
     constructor(props) {
@@ -9,8 +10,8 @@ class Base extends Component {
         this.state = {
             sideMenuStatus: false
         };
-        console.log('------- props are ------ ' + JSON.stringify(this.props));
         Navigation.events().bindComponent(this);
+
         this.setNavIcon();
         this.setTopBarRightIcon();
     }
@@ -21,13 +22,10 @@ class Base extends Component {
                 topBar: {
                     leftButtons: [
                         {
-                            id: 'settingsButton',
+                            id: 'viewSideMenu',
                             icon: src,
                         },
                     ],
-                },
-                bottomTab: {
-                    icon: src
                 }
             })
         );
@@ -35,24 +33,67 @@ class Base extends Component {
 
     setTopBarRightIcon() {
         const { componentId } = this.props;
-
-        if (componentId == 'registerCard') {
-            Icon.getImageSource('plus', 32).then((src) =>
-                Navigation.mergeOptions(this.props.componentId, {
-                    topBar: {
-                        rightButtons: [
-                            {
-                                id: 'settingsButton',
-                                icon: src,
-                            },
-                        ],
-                    },
-                })
-            );
+        if (topBarRightIconConfig.hasOwnProperty(componentId)) {
+            topBarRightIconConfig[componentId](componentId);
         }
     }
 
-    navigationButtonPressed(buttonId) {
+    navigationButtonPressed({ buttonId }) {
+        switch (buttonId) {
+            case 'viewSideMenu':
+                this.handleHamburgerClick();
+                break;
+            case 'viewCart':
+                this.handleCartClick();
+                break;
+            case 'addNewCard':
+                this.handleAddNewCardClick();
+                break;
+            default:
+                break;
+        }
+    }
+
+    handleAddNewCardClick() {
+        Navigation.push('card', {
+            component: {
+                name: 'screens.card.addNewCard',
+                options: {
+                    topBar: {
+                        title: {
+                            text: 'Your Cart'
+                        }
+                    },
+                    bottomTabs: {
+                        visible: false,
+                    }
+                }
+            }
+        });
+    }
+
+    handleCartClick() {
+        Navigation.push(this.props.componentId, {
+            component: {
+                name: 'screens.cart.cartSummary',
+                passProps: {
+                    text: 'Pushed screen'
+                },
+                options: {
+                    topBar: {
+                        title: {
+                            text: 'Your Cart'
+                        }
+                    },
+                    bottomTabs: {
+                        visible: false,
+                    }
+                }
+            }
+        });
+    }
+
+    handleHamburgerClick() {
         this.setState({
             sideMenuStatus: !this.state.sideMenuStatus
         }, () => {
@@ -63,7 +104,7 @@ class Base extends Component {
                     }
                 }
             });
-        })
+        });
     }
 }
 
