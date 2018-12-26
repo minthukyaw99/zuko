@@ -78,12 +78,13 @@ export const goHome = () => Navigation.setRoot({
                                 children: [
                                     {
                                         component: {
+                                            id: "registerCard",
                                             name: 'screens.bottomTabs.scanQrCode',
                                             passProps: {
                                                 text: 'text is passed',
                                                 bottomIcon: 'barcode'
                                             },
-                                        }
+                                        },
                                     }
                                 ],
                                 options: {
@@ -91,7 +92,7 @@ export const goHome = () => Navigation.setRoot({
                                         iconColor: COLOR.grey400,
                                         selectedIconColor: COLOR.pink500,
                                         icon: require('../assets/images/qrCode.png'),
-                                    }
+                                    },
                                 }
                             },
                         },

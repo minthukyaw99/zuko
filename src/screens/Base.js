@@ -9,10 +9,10 @@ class Base extends Component {
         this.state = {
             sideMenuStatus: false
         };
-
+        console.log('------- props are ------ ' + JSON.stringify(this.props));
         Navigation.events().bindComponent(this);
-
         this.setNavIcon();
+        this.setTopBarRightIcon();
     }
 
     setNavIcon() {
@@ -31,6 +31,25 @@ class Base extends Component {
                 }
             })
         );
+    }
+
+    setTopBarRightIcon() {
+        const { componentId } = this.props;
+
+        if (componentId == 'registerCard') {
+            Icon.getImageSource('plus', 32).then((src) =>
+                Navigation.mergeOptions(this.props.componentId, {
+                    topBar: {
+                        rightButtons: [
+                            {
+                                id: 'settingsButton',
+                                icon: src,
+                            },
+                        ],
+                    },
+                })
+            );
+        }
     }
 
     navigationButtonPressed(buttonId) {

@@ -27,7 +27,7 @@ class SideMenuScreen extends Component {
                         <List>
                             <ListItem
                                 title="Profile"
-                                leftIcon={{ name: 'account-circle', type: 'material' }}
+                                leftIcon={{ name: 'user', type: 'evilicon' }}
                                 containerStyle={{ borderBottomWidth: 0 }}
                             />
                         </List>

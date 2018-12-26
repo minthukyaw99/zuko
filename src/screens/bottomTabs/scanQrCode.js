@@ -21,7 +21,6 @@ class ScanQrCode extends Base {
     render() {
         return (
             <View style={styles.container}>
-
                 <QRCode
                     value={this.state.value}
                     size={200}
