@@ -17,8 +17,8 @@ export default class Initialising extends React.Component {
             const user = await AsyncStorage.getItem(USER_KEY)
 
             if (user == null) {
-                const [shopping, card, barcode] = await Wrapper();
-                goHome(shopping, card, barcode);// goToAuth();
+                const [shopping, wallet, notifications] = await Wrapper();
+                goHome(shopping, wallet, notifications);// goToAuth();
             } else {
 
                 goHome();

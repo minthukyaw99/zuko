@@ -36,7 +36,7 @@ export const goToAuth = () => Navigation.setRoot({
 });
 
 
-export const goHome = (shopping, card, barcode) => Navigation.setRoot({
+export const goHome = (shopping, wallet, notifications) => Navigation.setRoot({
     root: {
         sideMenu: {
             left: {
@@ -76,6 +76,9 @@ export const goHome = (shopping, card, barcode) => Navigation.setRoot({
                                         iconColor: COLOR.lightBlue100,
                                         selectedIconColor: COLOR.blueA200,
                                         icon: shopping,
+                                        text: 'Shopping',
+                                        textColor: COLOR.lightBlue100,
+                                        selectedTextColor: COLOR.blueA200,
                                         //testID: testIDs.FIRST_TAB_BAR_BUTTON
                                     }
                                 }
@@ -108,7 +111,10 @@ export const goHome = (shopping, card, barcode) => Navigation.setRoot({
                                     bottomTab: {
                                         iconColor: COLOR.lightBlue100,
                                         selectedIconColor: COLOR.blueA200,
-                                        icon: card,
+                                        icon: wallet,
+                                        text: 'Wallet',
+                                        textColor: COLOR.lightBlue100,
+                                        selectedTextColor: COLOR.blueA200,
                                     },
                                 }
                             },
@@ -131,7 +137,10 @@ export const goHome = (shopping, card, barcode) => Navigation.setRoot({
                                     bottomTab: {
                                         iconColor: COLOR.lightBlue100,
                                         selectedIconColor: COLOR.blueA200,
-                                        icon: barcode,
+                                        icon: notifications,
+                                        text: 'notifications',
+                                        textColor: COLOR.lightBlue100,
+                                        selectedTextColor: COLOR.blueA200,
                                     }
                                 }
                             },
