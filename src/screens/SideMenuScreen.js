@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { List, ListItem } from 'react-native-elements';
+import { COLOR } from 'react-native-material-ui';
 import { View, Text, Button, Platform, Image, Dimensions } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 
@@ -86,6 +87,6 @@ const styles = {
     root: {
         flexGrow: 1,
         //justifyContent: 'flex-start',
-        //backgroundColor: COLOR.white
+        backgroundColor: COLOR.white,
     }
 };
