@@ -98,7 +98,7 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.zukoapp"
-        minSdkVersion 27
+        minSdkVersion 24
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57" // See note below!
         versionCode 1
