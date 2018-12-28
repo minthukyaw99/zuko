@@ -4,11 +4,12 @@ import {
     Text,
     StyleSheet,
     AsyncStorage
-} from 'react-native'
+} from 'react-native';
 
 import {goToAuth, goHome} from './navigation';
 
 import { USER_KEY } from '../config';
+import Wrapper from './Wrapper';
 
 export default class Initialising extends React.Component {
     async componentDidMount() {
@@ -16,8 +17,10 @@ export default class Initialising extends React.Component {
             const user = await AsyncStorage.getItem(USER_KEY)
 
             if (user == null) {
-               goHome();// goToAuth();
+                const [shopping, card, barcode] = await Wrapper();
+                goHome(shopping, card, barcode);// goToAuth();
             } else {
+
                 goHome();
             }
         } catch (err) {

@@ -1,6 +1,7 @@
 import React  from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, SearchBar, Card } from "react-native-elements";
+import { WebView } from "react-native-webview";
 
 import Base from '../Base';
 
@@ -101,10 +102,22 @@ class ProductList extends Base {
 
     render() {
         return (
-            <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
-                <FlatList
-                    data={this.state.data}
-                    renderItem={({ item }) => (
+            <WebView
+                source={{ uri: "https://thinktank.financialadvisoriq.com/" }}
+                style={{ marginTop: 20 }}
+                onLoadProgress={e => console.log(e.nativeEvent.progress)}
+            />
+        );
+    }
+}
+
+export default ProductList;
+
+/**
+ <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+ <FlatList
+ data={this.state.data}
+ renderItem={({ item }) => (
                         <ListItem
                             roundAvatar
                             title={`${item.name.first} ${item.name.last}`}
@@ -114,18 +127,14 @@ class ProductList extends Base {
                             hideChevron={true}
                         />
                     )}
-                    keyExtractor={item => item.email}
-                    ItemSeparatorComponent={this.renderSeparator}
-                    ListHeaderComponent={this.renderHeader}
-                    ListFooterComponent={this.renderFooter}
-                    onRefresh={this.handleRefresh}
-                    refreshing={this.state.refreshing}
-                    onEndReached={this.handleLoadMore}
-                    onEndReachedThreshold={50}
-                />
-            </List>
-        );
-    }
-}
-
-export default ProductList;
+ keyExtractor={item => item.email}
+ ItemSeparatorComponent={this.renderSeparator}
+ ListHeaderComponent={this.renderHeader}
+ ListFooterComponent={this.renderFooter}
+ onRefresh={this.handleRefresh}
+ refreshing={this.state.refreshing}
+ onEndReached={this.handleLoadMore}
+ onEndReachedThreshold={50}
+ />
+ </List>
+ */

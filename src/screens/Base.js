@@ -61,7 +61,7 @@ class Base extends Component {
                 options: {
                     topBar: {
                         title: {
-                            text: 'Your Cart'
+                            text: 'Add New Card'
                         }
                     },
                     bottomTabs: {

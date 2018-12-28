@@ -3,6 +3,9 @@ package com.zukoapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lewin.qrcode.QRScanReaderPackage;
+import org.reactnative.camera.RNCameraPackage;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +28,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new QRScanReaderPackage(),
+            new RNCameraPackage(),
+            new RNCWebViewPackage(),
             new FBSDKPackage(),
             new VectorIconsPackage()
       );

@@ -2,6 +2,8 @@ import React from 'react';
 import {Navigation} from 'react-native-navigation';
 import { COLOR } from 'react-native-material-ui';
 
+import Wrapper from './Wrapper';
+
 export const goToAuth = () => Navigation.setRoot({
     root: {
         stack: {
@@ -34,7 +36,7 @@ export const goToAuth = () => Navigation.setRoot({
 });
 
 
-export const goHome = () => Navigation.setRoot({
+export const goHome = (shopping, card, barcode) => Navigation.setRoot({
     root: {
         sideMenu: {
             left: {
@@ -71,9 +73,9 @@ export const goHome = () => Navigation.setRoot({
                                 ],
                                 options: {
                                     bottomTab: {
-                                        iconColor: COLOR.grey500,
-                                        selectedIconColor: COLOR.pink400,
-                                        icon: require('../assets/images/homeIcon.png'),
+                                        iconColor: COLOR.lightBlue100,
+                                        selectedIconColor: COLOR.blueA200,
+                                        icon: shopping,
                                         //testID: testIDs.FIRST_TAB_BAR_BUTTON
                                     }
                                 }
@@ -104,9 +106,9 @@ export const goHome = () => Navigation.setRoot({
                                 ],
                                 options: {
                                     bottomTab: {
-                                        iconColor: COLOR.grey400,
-                                        selectedIconColor: COLOR.pink500,
-                                        icon: require('../assets/images/cardIcon.png'),
+                                        iconColor: COLOR.lightBlue100,
+                                        selectedIconColor: COLOR.blueA200,
+                                        icon: card,
                                     },
                                 }
                             },
@@ -127,9 +129,9 @@ export const goHome = () => Navigation.setRoot({
                                 ],
                                 options: {
                                     bottomTab: {
-                                        iconColor: COLOR.grey500,
-                                        selectedIconColor: COLOR.pink400,
-                                        icon: require('../assets/images/qrCode.png'),
+                                        iconColor: COLOR.lightBlue100,
+                                        selectedIconColor: COLOR.blueA200,
+                                        icon: barcode,
                                     }
                                 }
                             },
@@ -149,5 +151,8 @@ export const goHome = () => Navigation.setRoot({
             },
         }
     }
-});
+})
+
+
+
 
