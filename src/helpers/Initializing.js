@@ -6,6 +6,8 @@ import {
     AsyncStorage
 } from 'react-native';
 
+import { AccessToken } from 'react-native-fbsdk';
+
 import {goToAuth, goHome} from './navigation';
 
 import { USER_KEY } from '../config';
@@ -14,15 +16,17 @@ import Wrapper from './Wrapper';
 export default class Initialising extends React.Component {
     async componentDidMount() {
         try {
-            const user = await AsyncStorage.getItem(USER_KEY)
+            const accessToken = await AccessToken.getCurrentAccessToken();
+            console.log(`Zuko -------- access token is ${JSON.stringify(accessToken)}`)
 
-            if (user == null) {
-                const [shopping, wallet, notifications] = await Wrapper();
-                goHome(shopping, wallet, notifications);// goToAuth();
+            if (accessToken == null) {
+                goToAuth(); //goHome(shopping, wallet, notifications);//
             } else {
-
-                goHome();
+                alert('---- going to home ----');
+                const [shopping, wallet, notifications] = await Wrapper();
+                goHome(shopping, wallet, notifications);
             }
+
         } catch (err) {
             console.log('error: ', err)
             goToAuth()

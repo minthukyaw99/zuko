@@ -4,11 +4,33 @@ import { List, ListItem } from 'react-native-elements';
 import { COLOR } from 'react-native-material-ui';
 import { View, Text, Button, Platform, Image, Dimensions } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-
+import { facebookService } from '../services/FbService';
 
 const { width } = Dimensions.get('window');
 
 class SideMenuScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            profile: null,
+            userName: null,
+        };
+        this.fetchUserData = this.fetchUserData.bind(this);
+    }
+
+    componentDidMount() {
+        this.fetchUserData();
+    }
+
+    async fetchUserData() {
+        const userData = await facebookService.fetchUserData();
+        console.log('Zuko---------- user data ---------- ' + JSON.stringify(userData));
+        this.setState({
+            profile: userData.avatar,
+            userName: userData.name,
+        });
+    }
+
     render() {
         //const testID = this.props.side === 'left' ? testIDs.HIDE_LEFT_SIDE_MENU_BUTTON : testIDs.HIDE_RIGHT_SIDE_MENU_BUTTON;
         return (
@@ -18,10 +40,10 @@ class SideMenuScreen extends Component {
                     <View style={{ flex: 1,  alignItems: 'flex-start', justifyContent: 'flex-start'}}>
                         <View style={{ marginLeft: width/3 }}>
                             <Image
-                                source={require('../assets/images/logo-blue.png')}
+                                source={{ uri: this.state.profile }}
                                 style={{width: 50, height: 50}}
                             />
-                            <Text style={{ marginTop: 20 }}>Min Thu Kyaw</Text>
+                            <Text style={{ marginTop: 20 }}>{this.state.userName}</Text>
                         </View>
                     </View>
                     <View style={{ flex: 5, alignItems: 'stretch', justifyContent: 'flex-start'}} >

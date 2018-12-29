@@ -7,6 +7,10 @@ import {Navigation} from 'react-native-navigation';
 
 import Container from '../../components/Container/index';
 import Branding from '../../components/Branding/SignInBranding';
+import { facebookService } from '../../services/FbService';
+import { goHome } from '../../helpers/navigation';
+import Wrapper from "../../helpers/Wrapper";
+
 const uiTheme = {
     palette: {
         primaryColor: COLOR.pink500,
@@ -45,6 +49,11 @@ const styles = StyleSheet.create({
 
 
 const SignIn = ({ componentId }) => {
+    async function handleFacebookLogin() {
+        const [shopping, wallet, notifications] = await Wrapper();
+        goHome(shopping, wallet, notifications);
+    }
+
     function goToSignUp() {
         Navigation.push(componentId, {
             component: {
@@ -94,8 +103,7 @@ const SignIn = ({ componentId }) => {
                <View style={styles.thirdStyle}>
                    <Text raised onPress={goToSignUp} style={styles.linkStyle}>Create Account</Text>
                    <Text style={styles.linkStyle}>|</Text>
-                   <Text style={styles.linkStyle}>Login With Facebook</Text>
-
+                   {facebookService.makeLoginButton(handleFacebookLogin)}
                </View>
            </Container>
         </ThemeContext.Provider>

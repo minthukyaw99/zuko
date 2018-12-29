@@ -60,7 +60,7 @@ class ScanQrCode extends Base {
                         </View>
                     </View>
                 </View>
-            
+
         )
     }
 }
