@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/EvilIcons';
 import { List, ListItem } from 'react-native-elements';
 import { COLOR } from 'react-native-material-ui';
 import { View, Text, Button, Platform, Image, Dimensions } from 'react-native';

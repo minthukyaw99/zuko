@@ -3,6 +3,7 @@ package com.zukoapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.rnappauth.RNAppAuthPackage;
 import com.lewin.qrcode.QRScanReaderPackage;
 
 import org.reactnative.camera.RNCameraPackage;
@@ -51,6 +52,7 @@ public class MainApplication extends NavigationApplication {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
                 //new MainReactPackage(),
+                new RNAppAuthPackage(),
                 new QRScanReaderPackage(),
                 new RNCameraPackage(),
                 new RNCWebViewPackage(),

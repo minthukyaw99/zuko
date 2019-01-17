@@ -51,7 +51,9 @@ const styles = StyleSheet.create({
 const SignIn = ({ componentId }) => {
     async function handleFacebookLogin() {
         const [shopping, wallet, notifications] = await Wrapper();
-        goHome(shopping, wallet, notifications);
+        const userData = facebookService.fetchUserData();
+        console.log('Zuko ------ userData ' + JSON.stringify(userData));
+        //goHome(shopping, wallet, notifications);
     }
 
     function goToSignUp() {
