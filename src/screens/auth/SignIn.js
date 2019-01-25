@@ -7,9 +7,12 @@ import {Navigation} from 'react-native-navigation';
 
 import Container from '../../components/Container/index';
 import Branding from '../../components/Branding/SignInBranding';
+import LocalStorage from '../../helpers/LocalStorage';
+import OauthLogin from '../../helpers/OauthLogin';
+import Wrapper from "../../helpers/Wrapper";
 import { facebookService } from '../../services/FbService';
 import { goHome } from '../../helpers/navigation';
-import Wrapper from "../../helpers/Wrapper";
+import { FB_ACCESS_TOKEN, FB_ACCOUNT_ID } from '../../constant/localStorageConstant';
 
 const uiTheme = {
     palette: {
@@ -49,11 +52,18 @@ const styles = StyleSheet.create({
 
 
 const SignIn = ({ componentId }) => {
-    async function handleFacebookLogin() {
-        const [shopping, wallet, notifications] = await Wrapper();
-        const userData = facebookService.fetchUserData();
+    async function handleFacebookLogin(accessToken) {
+        const userData = await facebookService.fetchUserData();
+        const fbAccountId = userData.id;
+        await LocalStorage.saveToLocalStorage(FB_ACCOUNT_ID, fbAccountId);
+        await LocalStorage.saveToLocalStorage(FB_ACCESS_TOKEN, accessToken);
         console.log('Zuko ------ userData ' + JSON.stringify(userData));
-        //goHome(shopping, wallet, notifications);
+        OauthLogin.login(fbAccountId, accessToken, goToHome);
+    }
+
+    async function goToHome() {
+      const [shopping, wallet, notifications] = await Wrapper();
+      goHome(shopping, wallet, notifications);
     }
 
     function goToSignUp() {

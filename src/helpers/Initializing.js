@@ -1,76 +1,40 @@
 import React from 'react'
-import {
-    View,
-    Text,
-    StyleSheet,
-    AsyncStorage,
-    Linking,
-} from 'react-native';
-import { authorize } from 'react-native-app-auth/index';
-//import { AccessToken } from 'react-native-fbsdk';
+import { View, Text, StyleSheet } from 'react-native';
+import { AccessToken } from 'react-native-fbsdk';
 
-import {goToAuth, goHome} from './navigation';
-
-import { USER_KEY } from '../config';
+import OauthLogin from './OauthLogin';
+import LocalStorage from './LocalStorage';
 import Wrapper from './Wrapper';
-// import {facebookService} from "../services/FbService";
+import {goToAuth, goHome} from './navigation';
+import { FB_ACCOUNT_ID } from '../constant/localStorageConstant';
 
-export default class Initialising extends React.Component {
+class Initialising extends React.Component {
     async componentDidMount() {
         try {
-            //const accessToken = await AccessToken.getCurrentAccessToken();
-            //console.log(`Zuko -------- access token is ${JSON.stringify(accessToken)}`)
-            const pin = await this.getUserPin();
-            console.log('Zuko ----- user pin is ' + pin);
-            if (pin == null) {
-                //const userData = facebookService.fetchUserData();
-                const config = {
-                    //issuer: 'https://10.0.2.2:5000',
-                    serviceConfiguration: {
-                        authorizationEndpoint: 'https://10.0.2.2:5000/auth',
-                        tokenEndpoint: 'https://10.0.2.2:5000/token',
-                    },
-                    clientId: 'com.zukoapp',
-                    clientSecret: 'Gw3yEGT66K',
-                    redirectUrl: 'com.zuko.app:/com.zuko.app',
-                    scopes: ['offline_access', 'openid'],
-                    dangerouslyAllowInsecureHttpRequests: true,
-                };
-
-                try {
-                    const result = await authorize(config);
-                    alert(JSON.stringify(result));
-                    console.log('Zuko ------- auth result ----- ' + JSON.stringify(result));
-                    // result includes accessToken, accessTokenExpirationDate and refreshToken
-                } catch (error) {
-                    alert(error)
-                    console.log(`Zuko ----- auth error -------- ${JSON.stringify(error)}`);
-                }
-
-                goToAuth(); //goHome(shopping, wallet, notifications);//
+            const fbAccountId = await LocalStorage.getFromLocalStorage(FB_ACCOUNT_ID);
+            const fbAccessToken = await this.getFbAccessToken();
+            console.log('Zuko:  ', fbAccountId, fbAccessToken);
+            if (fbAccountId && fbAccessToken) {
+              OauthLogin.login(fbAccountId, fbAccessToken.accessToken, this.goToHomePage());
             } else {
-                console.log('Zuko ---- going to home page');
-                const [shopping, wallet, notifications] = await Wrapper();
-               // goHome(shopping, wallet, notifications);
+              goToAuth();
             }
 
         } catch (err) {
-            console.log('error: ', err)
+            console.log('Zuko: ', err)
             goToAuth()
         }
     }
 
-    async getUserPin() {
-        let userId = '';
-        try {
-            userId = await AsyncStorage.getItem('userPin') || null;
-            return userId;
-        } catch (error) {
-            // Error retrieving data
-            console.log(error.message);
-        }
-        return userId;
+    async goToHomePage() {
+      console.log('Zuko ---- going to home page');
+      const [shopping, wallet, notifications] = await Wrapper();
+      goHome(shopping, wallet, notifications);
+    }
 
+    async getFbAccessToken() {
+        console.log('Zuko .... trying to get fb access token ');
+      return await AccessToken.getCurrentAccessToken();
     }
 
     render() {
@@ -92,3 +56,5 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 });
+
+export default Initialising;
