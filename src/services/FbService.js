@@ -11,7 +11,7 @@ class FacebookService {
     makeLoginButton(callback) {
         return (
             <LoginButton
-                readPermissions={["public_profile, email"]}
+                readPermissions={["public_profile"]}
                 onLoginFinished={(error, result) => {
                     if (error) {
                         console.log('---- facebook login error ----');

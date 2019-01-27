@@ -7,8 +7,8 @@ class OauthLogin {
   static async login(fbAccountId, fbAccessToken, callBack) {
     const config = {
       serviceConfiguration: {
-        authorizationEndpoint: 'https://10.0.2.2:5000/auth',
-        tokenEndpoint: 'https://10.0.2.2:5000/token',
+        authorizationEndpoint: 'https://127.0.0.1:5000/auth', // 'https://10.0.2.2:5000/auth',
+        tokenEndpoint: 'https://127.0.0.1:5000/token', // 'https://10.0.2.2:5000/token',
       },
       clientId: 'com.zukoapp',
       clientSecret: 'Gw3yEGT66K',

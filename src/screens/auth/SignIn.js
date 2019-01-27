@@ -57,7 +57,6 @@ const SignIn = ({ componentId }) => {
         const fbAccountId = userData.id;
         await LocalStorage.saveToLocalStorage(FB_ACCOUNT_ID, fbAccountId);
         await LocalStorage.saveToLocalStorage(FB_ACCESS_TOKEN, accessToken);
-        console.log('Zuko ------ userData ' + JSON.stringify(userData));
         OauthLogin.login(fbAccountId, accessToken, goToHome);
     }
 
