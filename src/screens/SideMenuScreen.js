@@ -30,6 +30,18 @@ class SideMenuScreen extends Component {
         });
     }
 
+    getProfileImage() {
+        if (this.state.profile) {
+          return (
+            <Image
+              source={{ uri: this.state.profile }}
+              style={{width: 50, height: 50}}
+            />
+          )
+        }
+        return null;
+    }
+
     render() {
         //const testID = this.props.side === 'left' ? testIDs.HIDE_LEFT_SIDE_MENU_BUTTON : testIDs.HIDE_RIGHT_SIDE_MENU_BUTTON;
         return (
@@ -38,10 +50,7 @@ class SideMenuScreen extends Component {
                 <View style={{flex: 5 }}>
                     <View style={{ flex: 1,  alignItems: 'flex-start', justifyContent: 'flex-start'}}>
                         <View style={{ marginLeft: width/3 }}>
-                            <Image
-                                source={{ uri: this.state.profile }}
-                                style={{width: 50, height: 50}}
-                            />
+                          {this.getProfileImage()}
                             <Text style={{ marginTop: 20 }}>{this.state.userName}</Text>
                         </View>
                     </View>

@@ -7,8 +7,8 @@ class OauthLogin {
   static async login(fbAccountId, fbAccessToken, callBack) {
     const config = {
       serviceConfiguration: {
-        authorizationEndpoint: 'https://127.0.0.1:5000/auth', // 'https://10.0.2.2:5000/auth',
-        tokenEndpoint: 'https://127.0.0.1:5000/token', // 'https://10.0.2.2:5000/token',
+        authorizationEndpoint: 'http://192.168.0.4:5000/auth', //'http://127.0.0.1:5000/auth', // 'https://10.0.2.2:5000/auth',
+        tokenEndpoint:  'http://192.168.0.4:5000/token', //'http://127.0.0.1:5000/token', // 'https://10.0.2.2:5000/token',
       },
       clientId: 'com.zukoapp',
       clientSecret: 'Gw3yEGT66K',
@@ -23,10 +23,9 @@ class OauthLogin {
       const { accessToken, refreshToken } = result;
       await LocalStorage.saveToLocalStorage(OAUTH_ACCESS_TOKEN, accessToken);
       await LocalStorage.saveToLocalStorage(OAUTH_REFRESH_TOKEN, refreshToken);
-      return true;
+      callBack();
     } catch (error) {
       alert(error)
-      console.log(`Zuko ----- auth error -------- ${JSON.stringify(error)}`);
     }
   }
 }

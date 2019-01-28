@@ -15,7 +15,7 @@ class Initialising extends React.Component {
             const fbAccessToken = await this.getFbAccessToken();
             console.log('Zuko:  ', fbAccountId, fbAccessToken);
             if (fbAccountId && fbAccessToken) {
-              OauthLogin.login(fbAccountId, fbAccessToken.accessToken, this.goToHomePage());
+                OauthLogin.login(fbAccountId, fbAccessToken.accessToken, this.goToHomePage);
             } else {
               goToAuth();
             }

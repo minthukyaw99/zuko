@@ -52,7 +52,6 @@ class FacebookService {
                 null,
                 (error, result) => {
                     if (result) {
-                        console.log('Zuko-------- facebook login request result ------- ' + JSON.stringify(result));
                         const profile = result;
                         profile.avatar = `https://graph.facebook.com/${result.id}/picture`;
                         profile.email = `https://graph.facebook.com/${result.id}?fields=email&access_token=${accessToken}`;
