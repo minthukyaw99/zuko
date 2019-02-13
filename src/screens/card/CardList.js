@@ -1,11 +1,15 @@
 import React from 'react';
+import { Query } from 'react-apollo';
 import {View, Text, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import { COLOR, ThemeContext } from 'react-native-material-ui';
+import Client from '../../apollo/Client';
+import { gql } from 'apollo-boost';
 
 import Base from '../Base';
 import MemberCard from '../../components/MemberCard';
 import ZukoCard from '../../zukoLib/components/ZukoCard';
+
 
 const styles = {
     container: {
@@ -27,40 +31,62 @@ class ScanQrCode extends Base {
     }
 
     render() {
+      const GetBalance = gql`
+          query {
+              balance(id:"10156326395169633") {
+                  balance
+              }
+          }
+      `;
         return (
+            <Query client={Client} query={GetBalance}>
+              {
+                ({ data, loading, error }) => {
+                    if (error) {
+                      return <Text>error</Text>;
+                    }
 
-                <View style={styles.container}>
-                    <View style={{ flex: 1, backgroundColor: COLOR.lightBlue900}}>
-                        <MemberCard />
-                    </View>
-                    <View style={{ flex: 1 }}></View>
-                    <View style={{ flex: 3 }}>
-                        <ZukoCard>
+                    if (loading) {
+                      return <Text>'loading...'</Text>
+                    }
+
+
+                    return (
+                      <View style={styles.container}>
+                        <View style={{ flex: 1, backgroundColor: COLOR.lightBlue900}}>
+                          <MemberCard />
+                        </View>
+                        <View style={{ flex: 1 }}></View>
+                        <View style={{ flex: 3 }}>
+                          <ZukoCard>
                             <Text style={styles.balanceTextStyle}>
-                                Balance: $1,230.30
+                              Balance: ${data.balance.balance}
                             </Text>
-                        </ZukoCard>
-                        <ZukoCard>
+                          </ZukoCard>
+                          <ZukoCard>
                             <Icon name='bank-transfer' type='material-community' size={50} color={COLOR.blue500} />
                             <Text style={[styles.balanceTextStyle, { fontSize: 20 }]}>View Transactions</Text>
-                        </ZukoCard>
-                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch' }}>
+                          </ZukoCard>
+                          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch' }}>
                             <View style={{ flex: 1, alignItems: 'stretch'}}>
-                                <ZukoCard>
-                                    <Icon name='qrcode-scan' type='material-community' size={30} color={COLOR.blue500} />
-                                    <Text style={[styles.balanceTextStyle, { fontSize: 20 }]}>Scan To Pay</Text>
-                                </ZukoCard>
+                              <ZukoCard>
+                                <Icon name='qrcode-scan' type='material-community' size={30} color={COLOR.blue500} />
+                                <Text style={[styles.balanceTextStyle, { fontSize: 20 }]}>Scan To Pay</Text>
+                              </ZukoCard>
                             </View>
                             <View style={{ flex: 1}}>
-                                <ZukoCard>
-                                    <Icon name='cash-multiple' type='material-community' size={30} color={COLOR.blue500} />
-                                    <Text style={[styles.balanceTextStyle, { fontSize: 20 }]}>Receive Cash</Text>
-                                </ZukoCard>
+                              <ZukoCard>
+                                <Icon name='cash-multiple' type='material-community' size={30} color={COLOR.blue500} />
+                                <Text style={[styles.balanceTextStyle, { fontSize: 20 }]}>Receive Cash</Text>
+                              </ZukoCard>
                             </View>
+                          </View>
                         </View>
-                    </View>
-                </View>
-
+                      </View>
+                    )
+                }
+              }
+            </Query>
         )
     }
 }
