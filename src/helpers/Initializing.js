@@ -6,7 +6,7 @@ import OauthLogin from './OauthLogin';
 import LocalStorage from './LocalStorage';
 import Wrapper from './Wrapper';
 import {goToAuth, goHome} from './navigation';
-import { FB_ACCOUNT_ID } from '../constant/localStorageConstant';
+import {FB_ACCOUNT_ID, OAUTH_ACCESS_TOKEN, OAUTH_REFRESH_TOKEN} from '../constant/localStorageConstant';
 
 class Initialising extends React.Component {
     async componentDidMount() {
@@ -15,6 +15,7 @@ class Initialising extends React.Component {
             const fbAccessToken = await this.getFbAccessToken();
             console.log('Zuko:  ', fbAccountId, fbAccessToken);
             if (fbAccountId && fbAccessToken) {
+
                 OauthLogin.login(fbAccountId, fbAccessToken.accessToken, this.goToHomePage);
             } else {
               goToAuth();
@@ -23,6 +24,15 @@ class Initialising extends React.Component {
         } catch (err) {
             console.log('Zuko: ', err)
             goToAuth()
+        }
+    }
+
+    async hasAccessToken() {
+        const accessToken = await LocalStorage.getFromLocalStorage(OAUTH_ACCESS_TOKEN);
+        const refreshToken = await LocalStorage.getFromLocalStorage(OAUTH_REFRESH_TOKEN);
+
+        if (accessToken && refreshToken) {
+            fetch()
         }
     }
 

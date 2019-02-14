@@ -14,7 +14,7 @@ class OauthLogin {
       clientSecret: 'Gw3yEGT66K',
       redirectUrl: 'com.zuko.app:/com.zuko.app',
       scopes: ['offline_access', 'openid'],
-      additionalParameters: { fbAccountId, fbAccessToken },
+      additionalParameters: { fbAccountId, fbAccessToken, cardType: 'buyer' },
       dangerouslyAllowInsecureHttpRequests: true,
     };
 
