@@ -4,7 +4,7 @@ import LocalStorage from './LocalStorage';
 import { OAUTH_ACCESS_TOKEN, OAUTH_REFRESH_TOKEN } from '../constant/localStorageConstant';
 
 class OauthLogin {
-  static async login(fbAccountId, fbAccessToken, callBack) {
+  static async login(fbAccountId, fbAccessToken, callBack, errorHandler) {
     const config = {
       serviceConfiguration: {
         authorizationEndpoint: 'http://192.168.0.4:5000/auth', //'http://127.0.0.1:5000/auth', // 'https://10.0.2.2:5000/auth',
@@ -23,10 +23,28 @@ class OauthLogin {
       const { accessToken, refreshToken } = result;
       await LocalStorage.saveToLocalStorage(OAUTH_ACCESS_TOKEN, accessToken);
       await LocalStorage.saveToLocalStorage(OAUTH_REFRESH_TOKEN, refreshToken);
+      OauthLogin.fetchUserInfo(accessToken);
       callBack();
     } catch (error) {
-      alert(error)
+      alert(error);
+      errorHandler();
     }
+  }
+
+  static fetchUserInfo(accessToken) {
+    fetch('http://192.168.0.4:5000/me', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+      },
+      cache: "no-cache",
+    }).then(response => {
+      const data = response._bodyText;
+
+    }).catch(e => {
+      alert(e.message);
+    })
   }
 }
 

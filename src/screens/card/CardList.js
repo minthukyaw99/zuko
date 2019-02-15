@@ -4,9 +4,9 @@ import {View, Text, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import { COLOR, ThemeContext } from 'react-native-material-ui';
 import Client from '../../apollo/Client';
-import { gql } from 'apollo-boost';
 
 import Base from '../Base';
+import GetBalance from '../../graphql/balance';
 import MemberCard from '../../components/MemberCard';
 import ZukoCard from '../../zukoLib/components/ZukoCard';
 
@@ -31,15 +31,8 @@ class ScanQrCode extends Base {
     }
 
     render() {
-      const GetBalance = gql`
-          query {
-              balance(id:"10156326395169633") {
-                  balance
-              }
-          }
-      `;
         return (
-            <Query client={Client} query={GetBalance}>
+            <Query client={Client} query={GetBalance} variables={{id: "10156326395169633"}}>
               {
                 ({ data, loading, error }) => {
                     if (error) {

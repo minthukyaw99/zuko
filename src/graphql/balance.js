@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 const GetBalance = gql`
-    query{
-        balance(id: "10156326395169633") {
+    query GetBalance($id: String!) {
+        balance(id: $id) {
             balance
         }
     }
