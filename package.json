@@ -37,6 +37,7 @@
     "react-native-textinput-effects": "^0.4.2",
     "react-native-vector-icons": "^6.1.0",
     "react-native-webview": "^2.14.3",
+    "tcomb-form-native": "^0.6.20",
     "xcode": "^1.1.0"
   },
   "devDependencies": {

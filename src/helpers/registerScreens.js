@@ -11,6 +11,7 @@ export function registerScreens() {
     // authorization
     Navigation.registerComponent('screens.auth.signIn', () => require('../screens/auth/SignIn').default);
     Navigation.registerComponent('screens.auth.signUp', () => require('../screens/auth/SignUp').default);
+    Navigation.registerComponent('screens.auth.verifyPin', () => require('../screens/auth/VerifyPin').default);
 
     Navigation.registerComponent('screens.card.cardList', () => require('../screens/card/CardList').default);
     Navigation.registerComponent('screens.card.cardDetail', () => require('../screens/card/CardDetail').default);

@@ -4,6 +4,18 @@ import { COLOR } from 'react-native-material-ui';
 
 import Wrapper from './Wrapper';
 
+export const goToVerifyPin = () => Navigation.setRoot({
+  root: {
+    sideMenu: {
+      center: {
+        component: {
+          name: 'screens.auth.verifyPin'
+        },
+      },
+    }
+  }
+});
+
 export const goToAuth = () => Navigation.setRoot({
     root: {
         stack: {

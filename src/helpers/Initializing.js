@@ -5,34 +5,39 @@ import { AccessToken } from 'react-native-fbsdk';
 import OauthLogin from './OauthLogin';
 import LocalStorage from './LocalStorage';
 import Wrapper from './Wrapper';
-import {goToAuth, goHome} from './navigation';
-import {FB_ACCOUNT_ID, OAUTH_ACCESS_TOKEN, OAUTH_REFRESH_TOKEN} from '../constant/localStorageConstant';
+import {goToAuth, goHome, goToVerifyPin} from './navigation';
+import {
+  FB_ACCOUNT_ID,
+  OAUTH_ACCESS_TOKEN,
+  OAUTH_REFRESH_TOKEN,
+  OAUTH_ACCESS_TOKEN_EXPIRATION_DATE,
+} from '../constant/localStorageConstant';
 
 class Initialising extends React.Component {
     async componentDidMount() {
         try {
             const fbAccountId = await LocalStorage.getFromLocalStorage(FB_ACCOUNT_ID);
             const fbAccessToken = await this.getFbAccessToken();
-            console.log('Zuko:  ', fbAccountId, fbAccessToken);
-            if (fbAccountId && fbAccessToken) {
-
+            const authAccessToken = await this.hasAccessToken();
+            const hadExpired = await this.hasExpired();
+            console.log('----- had expired ', hadExpired);
+             if (authAccessToken && hadExpired) {
+                 console.log('---- go to verify pin page')
+                 goToVerifyPin();
+             } else if (authAccessToken && !hadExpired) {
+               console.log('---- has access token and not expire yet;')
+               OauthLogin.fetchUserInfo(authAccessToken, this.goToHomePage, goToAuth);
+             }
+             else if (fbAccountId && fbAccessToken) {
+                console.log('------ has fb access token ---- ');
                 OauthLogin.login(fbAccountId, fbAccessToken.accessToken, this.goToHomePage, goToAuth);
-            } else {
-              goToAuth();
-            }
+             } else {
+                 goToAuth();
+             }
 
         } catch (err) {
             console.log('Zuko: ', err)
             goToAuth()
-        }
-    }
-
-    async hasAccessToken() {
-        const accessToken = await LocalStorage.getFromLocalStorage(OAUTH_ACCESS_TOKEN);
-        const refreshToken = await LocalStorage.getFromLocalStorage(OAUTH_REFRESH_TOKEN);
-
-        if (accessToken && refreshToken) {
-            fetch()
         }
     }
 
@@ -45,6 +50,29 @@ class Initialising extends React.Component {
     async getFbAccessToken() {
         console.log('Zuko .... trying to get fb access token ');
       return await AccessToken.getCurrentAccessToken();
+    }
+
+    async hasAccessToken() {
+      const accessToken = await LocalStorage.getFromLocalStorage(OAUTH_ACCESS_TOKEN);
+
+      if (accessToken) {
+          return accessToken;
+      }
+
+      return false;
+    }
+
+    async hasExpired() {
+      const accessTokenExpirationDate = await LocalStorage.getFromLocalStorage(OAUTH_ACCESS_TOKEN_EXPIRATION_DATE);
+      const expiredDate = Date.parse(accessTokenExpirationDate);
+      const currentDate = new Date();
+      const currentTimeStamp = Date.parse(currentDate);
+
+      if (currentTimeStamp > expiredDate) {
+          return true;
+      }
+
+      return false;
     }
 
     render() {
