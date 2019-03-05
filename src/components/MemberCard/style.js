@@ -2,6 +2,8 @@ import { Dimensions, StyleSheet} from 'react-native';
 
 const {height} = Dimensions.get('window');
 
+const qrCodeSize = (height /4) * .75;
+
 const styles = StyleSheet.create({
     imageBackgroundStyle: {
         height: height / 4,
@@ -11,7 +13,7 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     containerStyle: {
-        flex: 1,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -19,6 +21,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto-Light',
         color: 'white',
         fontSize: 25
+    },
+    qrCodeStyle: {
+      width: qrCodeSize,
+      height: qrCodeSize,
     }
 });
 

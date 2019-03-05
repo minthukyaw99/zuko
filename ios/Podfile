@@ -8,4 +8,7 @@ target 'zukoApp' do
   # Pods for zukoApp
   pod 'AppAuth', '1.0.0.beta1'
 
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
 end

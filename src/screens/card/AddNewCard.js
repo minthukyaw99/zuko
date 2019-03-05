@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {QRscanner} from 'react-native-qr-scanner';
+import { COLOR } from 'react-native-material-ui';
+import {Navigation} from "react-native-navigation/lib/dist/index";
 
 export default class Scanner extends Component {
     constructor(props) {
@@ -37,12 +39,34 @@ export default class Scanner extends Component {
         );
     }
     onRead = (res) => {
-        alert(JSON.stringify(res));
+        const { data } = res;
+        if (data) {
+          Navigation.push('card', {
+            component: {
+              name: 'screens.card.transferForm',
+              passProps: {
+                transferTo: data,
+              },
+              options: {
+                topBar: {
+                  title: {
+                    text: 'Transfer Form'
+                  }
+                },
+                bottomTabs: {
+                  visible: false,
+                }
+              }
+            }
+          });
+        }
     }
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000'
+        //backgroundColor: '#000'
+        alignContent: 'center',
+        justifyContent: 'center'
     }
 });

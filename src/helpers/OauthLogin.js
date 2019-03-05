@@ -50,10 +50,10 @@ class OauthLogin {
       cache: "no-cache",
     }).then(response => {
       const data = JSON.parse(response._bodyText);
-      console.log('---- data is ', typeof data);
       OauthLogin.saveDataToCache(data);
       goToHome();
     }).catch(e => {
+      console.log('--- fetch user info error ', e.message)
       goToAuth();
     })
   }

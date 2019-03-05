@@ -64,6 +64,9 @@ class Initialising extends React.Component {
 
     async hasExpired() {
       const accessTokenExpirationDate = await LocalStorage.getFromLocalStorage(OAUTH_ACCESS_TOKEN_EXPIRATION_DATE);
+      if (accessTokenExpirationDate === null) {
+        return true;
+      }
       const expiredDate = Date.parse(accessTokenExpirationDate);
       const currentDate = new Date();
       const currentTimeStamp = Date.parse(currentDate);

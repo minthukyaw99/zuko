@@ -1,17 +1,16 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import {View, Text, ScrollView } from 'react-native';
-import { ListItem, Icon } from 'react-native-elements';
-import { COLOR, ThemeContext } from 'react-native-material-ui';
 import Client from '../../apollo/Client';
+import { COLOR, ThemeContext } from 'react-native-material-ui';
+import { ListItem, Icon, Card } from 'react-native-elements';
+import { Query } from 'react-apollo';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 
 import Base from '../Base';
 import GetCardNumber from '../../graphql/cardNumber';
 import GetBalance from '../../graphql/balance';
 import MemberCard from '../../components/MemberCard';
 import ZukoCard from '../../zukoLib/components/ZukoCard';
-import {facebookService} from "../../services/FbService";
-
+import {Navigation} from "react-native-navigation/lib/dist/index";
 
 const styles = {
     container: {
@@ -30,7 +29,10 @@ class ScanQrCode extends Base {
     constructor(props) {
         super(props);
         this.state = {
-          userName: ''
+          userName: '',
+          flip: false,
+          iconName: 'qrcode',
+          displayText: 'QrCode'
         }
     }
 
@@ -42,8 +44,27 @@ class ScanQrCode extends Base {
       return 'Min Thu Kyaw'
     }
 
+    goToScanQrCode() {
+      Navigation.push('card', {
+        component: {
+          name: 'screens.card.addNewCard',
+          options: {
+            topBar: {
+              title: {
+                text: 'Add New Card'
+              }
+            },
+            bottomTabs: {
+              visible: false,
+            }
+          }
+        }
+      });
+    }
+
     render() {
         return (
+          <ScrollView>
           <Query client={Client} query={GetCardNumber} >
             {
               ({ data }) => {
@@ -63,19 +84,20 @@ class ScanQrCode extends Base {
 
                         return (
                           <View style={styles.container}>
-                            <View style={{ flex: 1, backgroundColor: COLOR.lightBlue900}}>
+                            <View style={{ flex: 1 }}>
                               <MemberCard
                                 cardNumber={cardNumber}
                                 userName={this.state.userName}
+                                flip={this.state.flip}
                               />
                             </View>
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 3 }}>
-                              <ZukoCard>
+                              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                                 <Text style={styles.balanceTextStyle}>
                                   Balance: ${data.balance.balance}
                                 </Text>
-                              </ZukoCard>
+                              </View>
                               <ZukoCard>
                                 <Icon name='bank-transfer' type='material-community' size={50} color={COLOR.blue500} />
                                 <Text style={[styles.balanceTextStyle, { fontSize: 20 }]}>View Transactions</Text>
@@ -83,8 +105,10 @@ class ScanQrCode extends Base {
                               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch' }}>
                                 <View style={{ flex: 1, alignItems: 'stretch'}}>
                                   <ZukoCard>
+                                    <TouchableOpacity onPress={this.goToScanQrCode}>
                                     <Icon name='qrcode-scan' type='material-community' size={30} color={COLOR.blue500} />
                                     <Text style={[styles.balanceTextStyle, { fontSize: 20 }]}>Scan To Pay</Text>
+                                    </TouchableOpacity>
                                   </ZukoCard>
                                 </View>
                                 <View style={{ flex: 1}}>
@@ -104,6 +128,7 @@ class ScanQrCode extends Base {
               }
             }
           </Query>
+          </ScrollView>
         )
     }
 }

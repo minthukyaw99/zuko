@@ -16,6 +16,7 @@ export function registerScreens() {
     Navigation.registerComponent('screens.card.cardList', () => require('../screens/card/CardList').default);
     Navigation.registerComponent('screens.card.cardDetail', () => require('../screens/card/CardDetail').default);
     Navigation.registerComponent('screens.card.addNewCard', () => require('../screens/card/AddNewCard').default);
+    Navigation.registerComponent('screens.card.transferForm', () => require('../screens/card/TransferForm').default);
     //cart
     Navigation.registerComponent('screens.cart.cartSummary', () => require('../screens/cart/CartSummary').default);
 }

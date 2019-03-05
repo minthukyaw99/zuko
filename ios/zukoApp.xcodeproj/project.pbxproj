@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -50,6 +51,7 @@
 		5C3435B378B444A7A5315F72 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E01411D1A6554CC29C6ED9C2 /* Roboto-Regular.ttf */; };
 		5F25B58F9BE54269A5A372EB /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F607502196D342FF82D0C872 /* libRNVectorIcons.a */; };
 		66E9DCB6D0454C029763FCEB /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96534E00BC0F4907824F7D9E /* Roboto-Bold.ttf */; };
+		68449854221F9998007CCAC3 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6844984C221F98B9007CCAC3 /* libRNSVG.a */; };
 		68E172A921FE1A2C00CC91B0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E1727721FE1A2900CC91B0 /* FBSDKLoginKit.framework */; };
 		68E172AA21FE1A2C00CC91B0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E172A621FE1A2A00CC91B0 /* Bolts.framework */; };
 		68E172AB21FE1A2C00CC91B0 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E172A721FE1A2B00CC91B0 /* FBSDKShareKit.framework */; };
@@ -347,6 +349,20 @@
 			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
 			remoteInfo = "RCTAnimation-tvOS";
 		};
+		6844984B221F98B9007CCAC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6844981A221F98B9007CCAC3 /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = RNSVG;
+		};
+		6844984D221F98B9007CCAC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6844981A221F98B9007CCAC3 /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
+			remoteInfo = "RNSVG-tvOS";
+		};
 		6885A0B321D4A4130038448E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A179D8271BD34CDCB634BA26 /* RNCWebView.xcodeproj */;
@@ -473,6 +489,8 @@
 		6264D7A33BA64580B5C552F2 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Italic.ttf"; path = "../src/assets/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		66EF2B144C044EDB91F4A9E7 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		67D20146625C4D61B55F97FE /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../src/assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		6844981A221F98B9007CCAC3 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
+		6861A530222C84B20020D9D0 /* zukoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = zukoApp.entitlements; path = zukoApp/zukoApp.entitlements; sourceTree = "<group>"; };
 		68E1727721FE1A2900CC91B0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		68E172A621FE1A2A00CC91B0 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		68E172A721FE1A2B00CC91B0 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -538,6 +556,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68449854221F9998007CCAC3 /* libRNSVG.a in Frameworks */,
 				68F109DB21CED92A0015F545 /* libReactNativeNavigation.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -708,6 +727,7 @@
 		13B07FAE1A68108700A75B9A /* zukoApp */ = {
 			isa = PBXGroup;
 			children = (
+				6861A530222C84B20020D9D0 /* zukoApp.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -760,6 +780,15 @@
 			children = (
 				5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */,
 				5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6844981B221F98B9007CCAC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6844984C221F98B9007CCAC3 /* libRNSVG.a */,
+				6844984E221F98B9007CCAC3 /* libRNSVG-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -871,6 +900,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				6844981A221F98B9007CCAC3 /* RNSVG.xcodeproj */,
 				68F109D221CED8D10015F545 /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -1044,6 +1074,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = UZBFBMPQ9J;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1139,6 +1174,10 @@
 				{
 					ProductGroup = 6885A0B021D4A4130038448E /* Products */;
 					ProjectRef = A179D8271BD34CDCB634BA26 /* RNCWebView.xcodeproj */;
+				},
+				{
+					ProductGroup = 6844981B221F98B9007CCAC3 /* Products */;
+					ProjectRef = 6844981A221F98B9007CCAC3 /* RNSVG.xcodeproj */;
 				},
 				{
 					ProductGroup = 68F10A1121CF26600015F545 /* Products */;
@@ -1392,6 +1431,20 @@
 			fileType = archive.ar;
 			path = libRCTAnimation.a;
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6844984C221F98B9007CCAC3 /* libRNSVG.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSVG.a;
+			remoteRef = 6844984B221F98B9007CCAC3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6844984E221F98B9007CCAC3 /* libRNSVG-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNSVG-tvOS.a";
+			remoteRef = 6844984D221F98B9007CCAC3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6885A0B421D4A4130038448E /* libRNCWebView.a */ = {
@@ -1785,6 +1838,7 @@
 			baseConfigurationReference = BBFFC2A4E35BB0B56E373340 /* Pods-zukoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = zukoApp/zukoApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = UZBFBMPQ9J;
@@ -1816,6 +1870,7 @@
 			baseConfigurationReference = 86CA563C34ADC5F4C7CAB3A8 /* Pods-zukoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = zukoApp/zukoApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UZBFBMPQ9J;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Documents/FacebookSDK";
@@ -2050,7 +2105,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Min thu Kyaw (YAE9FWR6V2)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2104,7 +2159,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Min thu Kyaw (YAE9FWR6V2)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
